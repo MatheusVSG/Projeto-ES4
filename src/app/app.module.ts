@@ -7,18 +7,22 @@ import { CadastroClienteComponent } from './pages/cliente/cadastro-cliente/cadas
 import { HomeComponent } from './home/home.component';
 import { SideBarComponent } from './shared/components/side-bar/side-bar.component';
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
+import { SharedModule } from './shared/shared.module';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     CadastroClienteComponent,
     HomeComponent,
-    SideBarComponent,
-    NavBarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule,
+    RouterModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
