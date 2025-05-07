@@ -3,136 +3,137 @@
         <app-side-bar></app-side-bar>
     </div>
 
-    <div class="flex-grow-1 texte-primary">
-        <a routerLink="/cadastro-cliente">Cadastro Cliente</a>
-        <div *ngIf="etapa === 1">
-            <form #dadospessoais="ngForm" (ngSubmit)="validarforms(dadospessoais)">
+    <div class="container d-flex flex-column align-items-center justify-content-center min-vh-100">
 
-                <div>
-                    <label for="id">Id:</label>
-                    <input [(ngModel)]="cliente.id" type="number" id="id" required>
-                </div>
+        <h2 class="text-primary fw-bold mb-2">
+            {{ etapa === 1 ? 'Identificação Geral' : etapa === 2 ? 'Contato' : 'Endereço' }}
+        </h2>
 
-                <div>
-                    <label for="Nome">Nome:</label>
-                    <input [(ngModel)]="cliente.nome" type="text" name="nome" id="nome" required>
-                </div>
+        <p class="text-muted">Etapa {{ etapa }} de 3</p>
 
-                <div>
-                    <label for="nomeFantasia">Nome Fantasia:</label>
-                    <input [(ngModel)]="cliente.nomeFantasia" type="text" name="nomeFantasia" id="nome" required>
-                </div>
-
-                <div>
-                    <label for="CNPJ">CNPJ:</label>
-                    <input [(ngModel)]="cliente.cnpj" type="number" name="cnpj" id="cnpj" required>
-                </div>
-
-                <div>
-                    <label for="pessoa">Pessoa:</label>
-                    <input [(ngModel)]="cliente.pessoa" type="text" name="pessoa" id="pessoa" required>
-                </div>
-
-                <div>
-                    <label for="tipo">Tipo:</label>
-                    <input [(ngModel)]="cliente.tipo" type="text" name="tipo" id="tipo" required>
-                </div>
-
-                <div>
-                    <label for="dataAbertura">DataAbertura:</label>
-                    <input [(ngModel)]="cliente.dataAbertura" type="date" name="dataAbertura" id="dataAbertura"
-                        required>
-                </div>
-
-                <div>
-                    <button>enviar</button>
-                    <button>Deletar</button>
-                </div>
-
-            </form>
+        <div class="d-flex justify-content-center mb-3">
+            <span class="step-dot" [class.active]="etapa === 1"></span>
+            <span class="step-dot" [class.active]="etapa === 2"></span>
+            <span class="step-dot" [class.active]="etapa === 3"></span>
         </div>
 
-        <div *ngIf="etapa === 2">
+        <div class="form-card p-4 rounded">
             <form #dadospessoais="ngForm" (ngSubmit)="validarforms(dadospessoais)">
+                <div *ngIf="etapa === 1">
+                    <div class="form-group mb-3">
+                        <label for="loja">Loja:</label>
+                        <input [(ngModel)]="cliente.loja" name="loja" id="loja" class="form-control" required>
+                    </div>
 
-                <div>
-                    <label for="cep">Cep:</label>
-                    <input [(ngModel)]="cliente.cep" type="number" name="cep" id="cep" required>
+                    <div class="form-group mb-3">
+                        <label for="tipo">Tipo:</label>
+                        <select [(ngModel)]="cliente.tipo" name="tipo" id="tipo" class="form-control" required>
+                            <option value="" disabled selected>Selecione</option>
+                            <option value="empresa">Empresa</option>
+                            <option value="pessoa">Pessoa</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="razaoSocial">Razão Social:</label>
+                        <input [(ngModel)]="cliente.razaoSocial" name="razaoSocial" id="razaoSocial"
+                            class="form-control" required>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="cnpj">CNPJ:</label>
+                        <input [(ngModel)]="cliente.cnpj" name="cnpj" id="cnpj" class="form-control" type="number"
+                            required>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="dataAbertura">Data de Abertura:</label>
+                        <input [(ngModel)]="cliente.dataAbertura" name="dataAbertura" id="dataAbertura"
+                            class="form-control" type="date" required>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="nomeFantasia">Nome Fantasia:</label>
+                        <input [(ngModel)]="cliente.nomeFantasia" name="nomeFantasia" id="nomeFantasia"
+                            class="form-control" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">Próximo</button>
                 </div>
 
-                <div>
-                    <label for="logradouro">Logradouro:</label>
-                    <input [(ngModel)]="cliente.logradouro" type="text" name="logradouro" id="logradouro" required>
+                <div *ngIf="etapa === 2">
+                    <div class="form-group mb-3">
+                        <label for="telefone">Telefone:</label>
+                        <input [(ngModel)]="cliente.telefone" name="telefone" id="telefone" class="form-control"
+                            required>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="ddd">DDD:</label>
+                        <input [(ngModel)]="cliente.ddd" name="ddd" id="ddd" class="form-control" required>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="email">E-mail:</label>
+                        <input [(ngModel)]="cliente.email" name="email" id="email" class="form-control" required>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="homePage">Home Page:</label>
+                        <input [(ngModel)]="cliente.homePage" name="homePage" id="homePage" class="form-control"
+                            required>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="button" (click)="voltarEtapa()" class="btn btn-secondary w-50">Anterior</button>
+                        <button type="submit" class="btn btn-success w-50">Próximo</button>
+                    </div>
                 </div>
 
-                <div>
-                    <label for="bairro">bairro:</label>
-                    <input [(ngModel)]="cliente.bairro" type="text" name="bairro" id="bairro" required>
-                </div>
+                <div *ngIf="etapa === 3">
+                    <div class="form-group mb-3">
+                        <label for="logradouro">Logradouro:</label>
+                        <input [(ngModel)]="cliente.logradouro" name="logradouro" id="logradouro" class="form-control"
+                            required>
+                    </div>
 
-                <div>
-                    <label for="codMunicipio">codMunicipio:</label>
-                    <input [(ngModel)]="cliente.codMunicipio" type="numebr" name="codMunicipio" id="codMunicipio"
-                        required>
-                </div>
+                    <div class="form-group mb-3">
+                        <label for="bairro">Bairro:</label>
+                        <input [(ngModel)]="cliente.bairro" name="bairro" id="bairro" class="form-control" required>
+                    </div>
 
-                <div>
-                    <label for="municipio">municipio:</label>
-                    <input [(ngModel)]="cliente.municipio" type="text" name="municipio" id="municipio" required>
-                </div>
+                    <div class="form-group mb-3">
+                        <label for="municipio">Município:</label>
+                        <input [(ngModel)]="cliente.municipio" name="municipio" id="municipio" class="form-control"
+                            required>
+                    </div>
 
-                <div>
-                    <label for="tipo">estado:</label>
-                    <input [(ngModel)]="cliente.estado" type="text" name="estado" id="estado" required>
-                </div>
+                    <div class="form-group mb-3">
+                        <label for="codMunicipio">Código Município:</label>
+                        <input [(ngModel)]="cliente.codMunicipio" name="codMunicipio" id="codMunicipio"
+                            class="form-control" required>
+                    </div>
 
-                <div>
-                    <label for="pais">pais:</label>
-                    <input [(ngModel)]="cliente.pais" type="text" name="pais" id="pais" required>
-                </div>
+                    <div class="form-group mb-3">
+                        <label for="cep">CEP:</label>
+                        <input [(ngModel)]="cliente.cep" name="cep" id="cep" class="form-control" required>
+                    </div>
 
-                <div>
-                    <button>enviar</button>
-                    <button>Deletar</button>
-                </div>
+                    <div class="form-group mb-3">
+                        <label for="estado">Estado:</label>
+                        <input [(ngModel)]="cliente.estado" name="estado" id="estado" class="form-control" required>
+                    </div>
 
+                    <div class="form-group mb-4">
+                        <label for="pais">País:</label>
+                        <input [(ngModel)]="cliente.pais" name="pais" id="pais" class="form-control" required>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="button" (click)="voltarEtapa()" class="btn btn-secondary w-50">Anterior</button>
+                        <button type="submit" class="btn btn-success w-50">Finalizar</button>
+                    </div>
+
+                </div>
             </form>
         </div>
-
-        <div *ngIf="etapa === 3">
-            <form #dadospessoais="ngForm" (ngSubmit)="validarforms(dadospessoais)">
-
-                <div>
-                    <label for="ddd">ddd:</label>
-                    <input [(ngModel)]="cliente.ddd" name="ddd" type="number" id="ddd" required>
-                </div>
-
-                <div>
-                    <label for="telefone">telefone:</label>
-                    <input [(ngModel)]="cliente.telefone" type="number" name="telefone" id="telefone" required>
-                </div>
-
-                <div>
-                    <label for="email">email:</label>
-                    <input [(ngModel)]="cliente.email" type="text" name="email" id="email" required>
-                </div>
-
-                <div>
-                    <label for="homePage">homePage:</label>
-                    <input [(ngModel)]="cliente.homePage" type="numebr" name="homePage" id="homePage" required>
-                </div>
-
-                <div>
-                    <label for="loja">loja:</label>
-                    <input [(ngModel)]="cliente.loja" type="text" name="loja" id="loja" required>
-                </div>
-
-                <div>
-                    <button>enviar</button>
-                    <button>Deletar</button>
-                </div>
-
-            </form>
-        </div>
-    </div>
-</div>

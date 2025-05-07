@@ -23,5 +23,11 @@ export class HomeComponent {
 
   }
 
+  voltarEtapa() {
+    if (this.etapa > 1) {
+      this.etapa--;
+    }
+  }
+
 
 }

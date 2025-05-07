@@ -1,25 +1,40 @@
 export class Cliente {
-    nome?: string;
-    id?: number;
-    nomeFantasia?: string;
-    cnpj?: number;
-    pessoa?: string;
+    loja?: string;
     tipo?: string;
+    razaoSocial?: string;
+    cnpj?: number;
     dataAbertura?: string;
+    nomeFantasia?: string
 
-    cep?: string;
+    telefone?: string;
+    ddd?: number;
+    email?: string;
+    homePage?: string;
+
     logradouro?: string;
     bairro?: string;
-    codMunicipio?: string;
     municipio?: string;
+    codMunicipio?: string;
+    cep?: string;
     estado?: string;
     pais?: string;
 
-    ddd?: number;
-    telefone?: string;
-    email?: string;
-    homePage?: string;
-    loja?: string;
+    nome?: string;
+    id?: number;
+    pessoa?: string;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
