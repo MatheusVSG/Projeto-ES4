@@ -2,12 +2,12 @@ export class Cliente {
     loja?: string;
     tipo?: string;
     razaoSocial?: string;
-    cnpj?: number;
+    cnpj?: string;
     dataAbertura?: string;
     nomeFantasia?: string
 
     telefone?: string;
-    ddd?: number;
+    ddd?: string;
     email?: string;
     homePage?: string;
 

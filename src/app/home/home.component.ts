@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Cliente } from '../shared/models/Cliente';
+import { LocationService } from '../core/services/location.service';
+import { CnpjService } from '../core/services/cnpj.service';
 
 @Component({
   selector: 'app-home',
@@ -8,26 +10,5 @@ import { Cliente } from '../shared/models/Cliente';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  cliente: Cliente = new Cliente();
-  nome: string = 'matheus';
-  etapa: number = 1;
-  validarforms(dadospessoais: NgForm) {
-
-    if (dadospessoais.valid) {
-
-      console.log(this.cliente);
-      this.etapa++;
-    } else {
-      console.log('formulario invalido');
-    }
-
-  }
-
-  voltarEtapa() {
-    if (this.etapa > 1) {
-      this.etapa--;
-    }
-  }
-
-
+ 
 }
