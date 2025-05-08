@@ -5,18 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CadastroClienteComponent } from './pages/cliente/cadastro-cliente/cadastro-cliente.component';
 import { HomeComponent } from './home/home.component';
-import { SideBarComponent } from './shared/components/side-bar/side-bar.component';
-import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
 import { SharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ListaClientesComponent } from './pages/cliente/lista-clientes/lista-clientes.component';
+import { ClienteDetalhadoComponent } from './pages/cliente/cliente-detalhado/cliente-detalhado.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CadastroClienteComponent,
     HomeComponent,
+    ListaClientesComponent,
+    ClienteDetalhadoComponent,
   ],
   imports: [
     BrowserModule,

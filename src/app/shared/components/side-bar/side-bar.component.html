@@ -1,10 +1,25 @@
-<div class="vh-100 d-flex flex-column z-2 bg--fire-brick">
-    <div class="p-8">
-        LOGOTIPO
+<div class="sidebar-container bg-secondary z-2">
+    <div class="sidebar-header bg-success">
+        <div class="sidebar-logo">
+            <img src="/assets/images/logo.png" alt="LOGO" class="img-fluid">
+        </div>
+
     </div>
 
-    <div class="flex-grow-1 overflow-y-auto p-8">
-        <a routerLink="/cadastro-cliente">Cadastro de cliente</a>
-        <a routerLink="/">Home</a>
+    <div class="sidebar-body">
+        <a routerLink="/" class="sidebar-link">
+            <span class="fa-solid--home"></span>
+            <span>Home</span>
+        </a>
+
+        <a routerLink="/cadastro-cliente" class="sidebar-link">
+            <span class="fa6-solid--user-pen"></span>
+            <span>Cadastrar Cliente</span>
+        </a>
+
+        <a routerLink="/lista-clientes" class="sidebar-link">
+            <span class="fa6-solid--handshake"></span>
+            <span>Clientes Cadastrados</span>
+        </a>
     </div>
 </div>

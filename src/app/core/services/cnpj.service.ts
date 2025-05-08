@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class CnpjService {
     private readonly cnpjUrl=CNPJ_API;
      constructor(private http:HttpClient) { }
-     buscarCNPJ(cnpj:string): Observable<any>{
+     buscarCnpj(cnpj:string): Observable<any>{
        return this.http.get(`${this.cnpjUrl}/${cnpj}`);
      
 }

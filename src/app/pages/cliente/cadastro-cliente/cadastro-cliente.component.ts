@@ -57,7 +57,7 @@ export class CadastroClienteComponent {
   buscarCnpj(){
     const cnpj: string = this.cliente.cnpj ?? '';
 
-    this.cnpjService.buscarCNPJ(cnpj).subscribe({
+    this.cnpjService.buscarCnpj(cnpj).subscribe({
       next: (res) => {
         console.log(res)
 
