@@ -1,9 +1,8 @@
 export class Cliente {
     loja?: string;
     tipo?: string;
-    razaoSocial?: string;
     cnpj?: string;
-    dataAbertura?: string;
+    dataAbertura: string = '';
     nomeFantasia?: string
 
     telefone?: string;
@@ -22,19 +21,4 @@ export class Cliente {
     nome?: string;
     id?: number;
     pessoa?: string;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

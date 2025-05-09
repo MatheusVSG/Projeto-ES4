@@ -18,13 +18,13 @@
         </div>
 
         <div class="form-card p-4 rounded">
-            <form #dadospessoais="ngForm" (ngSubmit)="validarforms(dadospessoais)">
-                <div *ngIf="etapa === 1">
+            <form *ngIf="etapa === 1" #dadosPessoais="ngForm" (ngSubmit)="validarDadosPessoiais(dadosPessoais)">
+                <div>
 
                     <div class="form-group mb-3">
                         <label for="cnpj">CNPJ:</label>
-                        <input [(ngModel)]="cliente.cnpj" (input)="buscarCnpj()" name="cnpj" id="cnpj" class="form-control" type="text"
-                            required>
+                        <input [(ngModel)]="cliente.cnpj" (input)="buscarCnpj()" name="cnpj" id="cnpj"
+                            class="form-control" type="text" required>
                     </div>
 
                     <div class="form-group mb-3">
@@ -42,8 +42,8 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="razaoSocial">Razão Social:</label>
-                        <input [(ngModel)]="cliente.razaoSocial" name="razaoSocial" id="razaoSocial"
+                        <label for="nome">Razão Social:</label>
+                        <input [(ngModel)]="cliente.nome" name="nome" id="nome"
                             class="form-control" required>
                     </div>
 
@@ -61,8 +61,10 @@
 
                     <button type="submit" class="btn btn-success w-100">Próximo</button>
                 </div>
+            </form>
 
-                <div *ngIf="etapa === 2">
+            <form *ngIf="etapa === 2" #contato="ngForm" (ngSubmit)="validarContato(contato)">
+                <div>
                     <div class="form-group mb-3">
                         <label for="telefone">Telefone:</label>
                         <input [(ngModel)]="cliente.telefone" name="telefone" id="telefone" class="form-control"
@@ -90,12 +92,14 @@
                         <button type="submit" class="btn btn-success w-50">Próximo</button>
                     </div>
                 </div>
+            </form>
 
-                <div *ngIf="etapa === 3">
-
+            <form  *ngIf="etapa === 3" #endereco="ngForm" (ngSubmit)="validarEndereco(endereco)">
+                <div>
                     <div class="form-group mb-3">
                         <label for="cep">CEP:</label>
-                        <input [(ngModel)]="cliente.cep" (input)="buscarEndereco()" type="text" name="cep" id="cep" maxlength="" class="form-control" required>
+                        <input [(ngModel)]="cliente.cep" (input)="buscarEndereco()" type="text" name="cep" id="cep"
+                            maxlength="" class="form-control" required>
                     </div>
 
                     <div class="form-group mb-3">
@@ -135,11 +139,14 @@
                         <button type="button" (click)="voltarEtapa()" class="btn btn-secondary w-50">Anterior</button>
                         <button type="submit" class="btn btn-success w-50">Finalizar</button>
                     </div>
-
                 </div>
             </form>
+
+            <div *ngIf="etapa === 4">
+                deu bom
+            </div>
         </div>
-        
+
     </div>
 
 </div>
