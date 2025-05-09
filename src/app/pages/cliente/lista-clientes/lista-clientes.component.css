@@ -1,0 +1,14 @@
+/* Botão de detalhes */
+.btn-detalhes {
+    padding: 6px 12px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-detalhes:hover {
+    background-color: #0056b3;
+  }

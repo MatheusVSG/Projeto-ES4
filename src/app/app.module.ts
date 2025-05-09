@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ListaClientesComponent } from './pages/cliente/lista-clientes/lista-clientes.component';
 import { ClienteDetalhadoComponent } from './pages/cliente/cliente-detalhado/cliente-detalhado.component';
+import { ClienteListaComponent } from './cliente-lista/cliente-lista.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ClienteDetalhadoComponent } from './pages/cliente/cliente-detalhado/cli
     HomeComponent,
     ListaClientesComponent,
     ClienteDetalhadoComponent,
+    ClienteListaComponent,
   ],
   imports: [
     BrowserModule,
