@@ -1,24 +1,23 @@
 export class Cliente {
-    loja?: string;
-    tipo?: string;
-    cnpj?: string;
-    dataAbertura: string = '';
-    nomeFantasia?: string
+    id: any;
+    cnpj: string = '';
+    pessoa: string = 'J';
+    nome: string = '';
+    dataAbertura: string | Date | null = '';
+    nomeFantasia: string = ''
+    tipo: string = '';
+    loja: string = '';
 
-    telefone?: string;
-    ddd?: string;
-    email?: string;
-    homePage?: string;
+    ddd: string = '';
+    telefone: string = '';
+    email: string = '';
+    homePage: string = '';
 
-    logradouro?: string;
-    bairro?: string;
-    municipio?: string;
-    codMunicipio?: string;
-    cep?: string;
-    estado?: string;
-    pais?: string;
-
-    nome?: string;
-    id?: number;
-    pessoa?: string;
+    cep: string = '';
+    logradouro: string = '';
+    bairro: string = '';
+    municipio: string = '';
+    codMunicipio: string = '';
+    estado: string = '';
+    pais: string = 'BR';
 }

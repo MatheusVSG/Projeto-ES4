@@ -12,6 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ListaClientesComponent } from './pages/cliente/lista-clientes/lista-clientes.component';
 import { ClienteDetalhadoComponent } from './pages/cliente/cliente-detalhado/cliente-detalhado.component';
 import { ClienteListaComponent } from './cliente-lista/cliente-lista.component';
+import { NgxMaskDirective, NgxMaskPipe, provideEnvironmentNgxMask } from 'ngx-mask';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+import { provideToastr, ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -28,9 +31,17 @@ import { ClienteListaComponent } from './cliente-lista/cliente-lista.component';
     SharedModule,
     RouterModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    provideEnvironmentNgxMask(),
+    provideAnimations(), // required animations providers
+    provideToastr(),
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
