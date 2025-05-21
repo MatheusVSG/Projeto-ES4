@@ -128,19 +128,9 @@ export class CadastroClienteComponent {
     this.formularioRecebido = true;
     if (dadosPessoais.valid) {
       if (this.errosFormuario.length === 0 && this.etapa < this.etapaLimite) {
-        if (this.cliente.dataAbertura) {
-          const dataAberturaObj = new Date(this.cliente.dataAbertura);
-          const [day, month, year] = [dataAberturaObj.getDay(), dataAberturaObj.getMonth() + 1, dataAberturaObj.getFullYear()];
-          const dataAbertura = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-          this.cliente.dataAbertura = dataAbertura;
-        }
-        else {
-          this.cliente.dataAbertura = null;
-        }
-        
+        this.cliente.dataAbertura = this.cliente.dataAbertura || null;
         this.formularioRecebido = false;
         this.etapa++;
-        console.log(this.cliente)
       }
       else {
         this.toastService.error('Verifique se todas as informações estão corretas!');
@@ -152,12 +142,14 @@ export class CadastroClienteComponent {
   }
 
   verificarTelefoneExistente(): void {
-    const telefone = this.cliente.ddd.toString() + this.cliente.telefone.toString();
-    if (telefone.length < 11) {
+    const ddd = this.cliente.ddd;
+    const telefone = this.cliente.telefone;
+
+    if (ddd.length < 2 || telefone.length < 9) {
       return;
     }
 
-    this.clienteService.verificarTelefoneExistente(telefone).subscribe({
+    this.clienteService.verificarTelefoneExistente(ddd, telefone).subscribe({
       next: (res) => {
         console.log(res)
         if (res.status === 200) {

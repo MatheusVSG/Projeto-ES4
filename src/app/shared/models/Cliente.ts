@@ -19,5 +19,5 @@ export class Cliente {
     municipio: string = '';
     codMunicipio: string = '';
     estado: string = '';
-    pais: string = 'BR';
+    pais: string = 'BRA';
 }

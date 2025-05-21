@@ -11,10 +11,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ListaClientesComponent } from './pages/cliente/lista-clientes/lista-clientes.component';
 import { ClienteDetalhadoComponent } from './pages/cliente/cliente-detalhado/cliente-detalhado.component';
-import { ClienteListaComponent } from './cliente-lista/cliente-lista.component';
 import { NgxMaskDirective, NgxMaskPipe, provideEnvironmentNgxMask } from 'ngx-mask';
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { provideToastr, ToastrModule } from 'ngx-toastr';
     HomeComponent,
     ListaClientesComponent,
     ClienteDetalhadoComponent,
-    ClienteListaComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

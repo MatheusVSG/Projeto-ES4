@@ -1,74 +1,65 @@
-<div class="w-100 dvh-100 overflow-y-auto d-flex flex-column flex-md-row">
-    <div class="h-100 d-none d-md-block position-sticky start-0 top-0 z-2">
-        <app-side-bar></app-side-bar>
-    </div>
+<div class="w-100 dvh-100 d-flex flex-column flex-md-row">
+  <app-loader *ngIf="carregando"></app-loader>
 
-    <div class="flex-grow-1 px-3 pt-3 pb-4">
-        <!-- lista-clientes.component.html -->
-        <div>
-            
-          
-            <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Nome Fantasia:</th>
-                    <th scope="col">CNPJ:</th>
-                    <th scope="col">Cidade:</th>
-                    <th scope="col">
-                        <div class="d-flex">
-                          <input type="text" class="form-control form-control-sm" placeholder="Buscar..." aria-label="Buscar">
-                          <!-- Dropdown de filtro -->
-                          <div class="dropdown ms-2">
-                            <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                              Filtrar
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <li><a class="dropdown-item" href="#">Nome</a></li>
-                              <li><a class="dropdown-item" href="#">CNPJ</a></li>
-                              <li><a class="dropdown-item" href="#">Cidade</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Bartira Bebidas Artesanais</td>
-                    <td>12.345.678/0001-90</td>
-                    <td>Tatuí</td>
-                    <td><button class="btn btn-outline-primary btn-sm">Detalhes</button></td>
-                  </tr>
-                  <tr>
-                    <td>Solar Tech Serviços</td>
-                    <td>98.765.432/0001-10</td>
-                    <td>Itapetininga</td>
-                    <td><button class="btn btn-outline-primary btn-sm">Detalhes</button></td>
-                  </tr>
-                  <tr>
-                    <td>Construtora Vida Nova</td>
-                    <td>11.111.111/0001-11</td>
-                    <td>Porangaba</td>
-                    <td><button class="btn btn-outline-primary btn-sm">Detalhes</button></td>
-                  </tr>
-                  <tr>
-                    <td>Farmácia Popular do Centro</td>
-                    <td>22.222.222/0001-22</td>
-                    <td>Guareí</td>
-                    <td><button class="btn btn-outline-primary btn-sm">Detalhes</button></td>
-                  </tr>
-                  <tr>
-                    <td>Auto Peças Rodrigues</td>
-                    <td>33.333.333/0001-33</td>
-                    <td>Boituva</td>
-                    <td><button class="btn btn-outline-primary btn-sm">Detalhes</button></td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              
-              
-              
-          </div>
+  <div class="h-100 d-none d-md-block position-sticky start-0 top-0 z-1">
+    <app-side-bar></app-side-bar>
+  </div>
+
+  <div class="flex-grow-1 overflow-y-auto px-3 pt-3 pb-4">
+    <!-- lista-clientes.component.html -->
+    <div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th scope="col">Nome Fantasia</th>
+            <th scope="col">CNPJ</th>
+            <th scope="col">Município</th>
+            <th scope="col">
+              <div class="d-flex">
+                <input type="text" (input)="buscarClientesPorTermo($any($event.target).value)"
+                  class="form-control form-control-sm" placeholder="Buscar..." aria-label="Buscar">
+                <!-- Dropdown de filtro -->
+                <div class="dropdown ms-2">
+                  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Filtrar
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#">Nome</a></li>
+                    <li><a class="dropdown-item" href="#">CNPJ</a></li>
+                    <li><a class="dropdown-item" href="#">Cidade</a></li>
+                  </ul>
+                </div>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cliente of listaClientes">
+            <td>{{cliente.id.toString().padStart(2, '0')}}</td>
+            <td>{{cliente.nomeFantasia}}</td>
+            <td>{{cliente.cnpj | mask: '00.000/0000-00'}}</td>
+            <td>{{cliente.municipio}}</td>
+            <td class="text-end">
+              <div class="d-flex flex-column row-gap-2 align-items-end">
+                <a routerLink="/cliente-detalhado/{{cliente.id}}" class="btn btn-outline-primary btn-sm">
+                  Detalhes
+                </a>
+
+                <button type="button" (click)="excluirCliente(cliente.id, cliente.nomeFantasia)"  class="btn btn-outline-danger btn-sm">
+                  Excluir
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="listaClientes && listaClientes.length === 0">
+            <td colspan="5" class="text-center">
+              Nenhum cliente encontrado.
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>

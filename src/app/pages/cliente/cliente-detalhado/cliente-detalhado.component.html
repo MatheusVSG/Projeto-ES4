@@ -1,1 +1,189 @@
-<p>cliente-detalhado works!</p>
+<div class="w-100 dvh-100 overflow-y-hidden d-flex flex-column flex-md-row">
+    <app-loader *ngIf="carregando"></app-loader>
+
+    <app-side-bar class="h-100 position-sticky top-0 start-0">
+    </app-side-bar>
+
+    <div class="flex-grow-1 overflow-y-auto px-3 pt-3 pb-4">
+        <div class="col-12 col-md-8 col-lg-6 mx-auto">
+            <div class="w-100 p-4 bg-white border border-1 rounded-5 shadow-sm">
+                <form #clienteForm="ngForm" (keyup.enter)="validarCliente(clienteForm)"
+                    [ngClass]="{'was-validated': formularioRecebido}">
+                    <div class="row align-items-center mb-4">
+                        <h2 class="fs-24">Dados Comerciais</h2>
+
+                        <div class="col-9 col-lg-5 mb-4">
+                            <label for="cnpj" class="form-label">CNPJ</label>
+                            <input [(ngModel)]="cliente.cnpj" type="text" name="cnpj" id="cnpj"
+                                mask="00.000.000/0000-00" maxlength="18" readonly class="form-control text-muted">
+                        </div>
+
+                        <div class="col-3 mb-4">
+                            <label for="pessoa" class="form-label">Pessoa</label>
+                            <input [(ngModel)]="cliente.pessoa" type="text" name="pessoa" id="pessoa" maxlength="1"
+                                readonly class="form-control text-muted">
+                        </div>
+
+                        <div class="col-12 col-lg-4 mb-4">
+                            <label for="dataAbertura" class="form-label">Data de Abertura</label>
+                            <input [(ngModel)]="cliente.dataAbertura" type="date" name="dataAbertura" id="dataAbertura"
+                                class="form-control">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="nome" class="form-label">Nome/Razão Social</label>
+                            <input [(ngModel)]="cliente.nome" type="text" name="nome" id="nome" maxlength="100" readonly
+                                class="form-control text-muted">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="nomeFantasia" class="form-label">Nome Fantasia <span
+                                    class="text-danger">*</span></label>
+                            <input [(ngModel)]="cliente.nomeFantasia" type="text" (input)="validarNomeFantasia()"
+                                name="nomeFantasia" id="nomeFantasia" maxlength="100" required
+                                [ngClass]="{'is-invalid border-danger': errosFormuario.includes('nomeFantasia')}"
+                                class="form-control">
+
+                            <div *ngIf="errosFormuario.includes('nomeFantasia')" class="mt-1">
+                                <small class="text-danger">O Nome Fantasia não pode ficar em branco!</small>
+                            </div>
+                        </div>
+
+                        <div class="col-3 col-lg-2 mb-4">
+                            <label for="loja" class="form-label">Loja <span class="text-danger">*</span></label>
+                            <input [(ngModel)]="cliente.loja" type="text" name="loja" id="loja" maxlength="2"
+                                pattern="\d*" required class="form-control">
+                        </div>
+
+                        <div class="col-9 col-lg-10 mb-4">
+                            <label for="tipo" class="form-label">Tipo <span class="text-danger">*</span></label>
+                            <select [(ngModel)]="cliente.tipo" name="tipo" id="tipo" maxlength="30" required
+                                class="form-select">
+                                <option value="" disabled selected>Selecione um Tipo</option>
+                                <option value="Consumidor Final">Consumidor Final</option>
+                                <option value="Produtor Rural">Produtor Rural</option>
+                                <option value="Revendedor">Revendedor</option>
+                                <option value="Solidário">Solidário</option>
+                                <option value="Exportação">Exportação</option>
+                            </select>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div class="row mb-40">
+                        <h2>Contato</h2>
+                        <div class="col-2 mb-40">
+                            <label for="ddd" class="form-label">DDD</label>
+                            <input [(ngModel)]="cliente.ddd" type="text" (input)="verificarTelefoneExistente()" name="ddd" id="ddd" mask="0*" maxlength="3"
+                                pattern="\d*" class="form-control">
+                        </div>
+
+                        <div class="col-10 mb-40">
+                            <label for="telefone" class="form-label">Telefone</label>
+                            <input [(ngModel)]="cliente.telefone" type="text" (input)="verificarTelefoneExistente()" name="telefone" id="telefone"
+                                mask="00000-0000" maxlength="15" placeholder="Informe um telefone válido"
+                               [ngClass]="{'is-invalid border-danger': errosFormuario.includes('telefone')}" class="form-control">
+
+                            <div *ngIf="errosFormuario.includes('telefone')" class="mt-1">
+                                <small class="text-danger">Telefone já cadastrado!</small>
+                            </div>
+                        </div>
+
+                        <div class="mb-40">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input [(ngModel)]="cliente.email" type="text" (input)="verificarEmailExistente()" name="email" id="email" maxlength="100"
+                                placeholder="Informe um e-mail válido" [ngClass]="{'is-invalid border-danger': errosFormuario.includes('e-mail')}" class="form-control">
+
+                            <div *ngIf="errosFormuario.includes('e-mail')" class="mt-1">
+                                <small class="text-danger">E-mail já cadastrado!</small>
+                            </div>
+                        </div>
+
+                        <div class="mb-40">
+                            <label for="homePage" class="form-label">HomePage</label>
+                            <input [(ngModel)]="cliente.homePage" type="text" name="homePage" id="homePage"
+                                maxlength="255" placeholder="Informe o link do site da empresa (se houver)"
+                                class="form-control">
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div class="row align-items-center">
+                        <h2>Endereço</h2>
+
+                        <div class="col-5 mb-40">
+                            <label for="cep" class="form-label">CEP</label>
+                            <input [(ngModel)]="cliente.cep" type="text" name="cep" id="cep" mask="00000-000"
+                                maxlength="9" class="form-control">
+                        </div>
+
+                        <div class="col-9 mb-40">
+                            <label for="logradouro" class="form-label">Logradouro <span
+                                    class="text-danger">*</span></label>
+                            <input [(ngModel)]="cliente.logradouro" type="text" (input)="validarLogradouro()" name="logradouro" id="logradouro"
+                                maxlength="150" required
+                                [ngClass]="{'is-invalid border-danger': errosFormuario.includes('logradouro')}"
+                                class="form-control">
+
+                            <div *ngIf="errosFormuario.includes('logradouro')" class="mt-1">
+                                <small class="text-danger">O Logradouro não pode ficar em branco!</small>
+                            </div>
+                        </div>
+
+                        <div class="col-3 mb-40">
+                            <label for="numeroEndereco" class="form-label">Nº <span class="text-danger">*</span></label>
+                            <input [(ngModel)]="numeroEndereco" type="text" name="numeroEndereco" id="numeroEndereco"
+                                mask="0*" maxlength="10" pattern="\d*" required class="form-control">
+                        </div>
+
+                        <div class="mb-40">
+                            <label for="bairro" class="form-label">Bairro</label>
+                            <input [(ngModel)]="cliente.bairro" name="bairro" id="bairro" maxlength="60"
+                                class="form-control">
+                        </div>
+
+                        <div class="col-6 mb-40">
+                            <label for="codMunicipio" class="form-label">Código Município</label>
+                            <input [(ngModel)]="cliente.codMunicipio" type="text" name="codMunicipio" id="codMunicipio"
+                                maxlength="7" class="form-control">
+                        </div>
+
+                        <div class="col-7 mb-40">
+                            <label for="municipio" class="form-label">Município <span
+                                    class="text-danger">*</span></label>
+                            <input [(ngModel)]="cliente.municipio" type="text" (input)="validarMunicipio()" name="municipio" id="municipio"
+                                maxlength="80" required
+                                [ngClass]="{'is-invalid border-danger': errosFormuario.includes('municipio')}"
+                                class="form-control">
+
+                            <div *ngIf="errosFormuario.includes('municipio')" class="mt-1">
+                                <small class="text-danger">O Município não pode ficar em branco!</small>
+                            </div>
+                        </div>
+
+                        <div class="col-3 mb-40">
+                            <label for="estado" class="form-label">Estado <span class="text-danger">*</span></label>
+                            <select [(ngModel)]="cliente.estado" name="estado" id="estado" maxlength="2" required
+                                class="form-control">
+                                <option value="">Selecione</option>
+                                <option *ngFor="let estado of estadosBrasileiros" value="{{estado}}">{{estado}}</option>
+                            </select>
+                        </div>
+
+                        <div class="col-2 mb-40">
+                            <label for="pais" class="form-label">País</label>
+                            <input [(ngModel)]="cliente.pais" name="pais" id="pais" maxlength="3" readonly
+                                class="form-control">
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="submit" (click)="validarCliente(clienteForm)" class="w-100 btn btn-success">Salvar
+                            Alterações</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

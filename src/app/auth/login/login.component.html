@@ -1,0 +1,23 @@
+<div class="bg-img w-100 min-vh-100 d-flex justify-content-center align-items-center py-3">
+        <div class="col-12 col-md-6 col-lg-4 mx-auto d-flex flex-column row-gap-3">
+            <div class="col-auto mx-auto text-center">
+                <img src="/assets/images/logo.png" alt="Maicosoft" width="120" class="img-fluid">
+            </div>
+
+            <form #authForm="ngForm" (ngSubmit)="validarAuth(authForm)"
+            [ngClass]="{'was-validated': formularioRecebido}" class="p-4 bg-white bg-opacity-75 border border-1 rounded shadow">
+                <h3 class="text-center text-primary mb-40">Login</h3>
+                <div class="mb-40">
+                    <label for="usuario" class="form-label">Usuário</label>
+                    <input [(ngModel)]="loginDto.usuario" type="text" name="usuario" id="usuario" required class="form-control">
+                </div>
+
+                <div class="mb-40">
+                    <label for="senha" class="form-label">Senha</label>
+                    <input [(ngModel)]="loginDto.senha" type="password" name="senha" id="senha" required class="form-control">
+                </div>
+
+                <button class="w-100 btn btn-success">Acessar</button>
+            </form>
+        </div>
+</div>
