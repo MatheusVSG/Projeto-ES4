@@ -15,6 +15,7 @@ import { NgxMaskDirective, NgxMaskPipe, provideEnvironmentNgxMask } from 'ngx-ma
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './auth/login/login.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { LoginComponent } from './auth/login/login.component';
     ListaClientesComponent,
     ClienteDetalhadoComponent,
     LoginComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

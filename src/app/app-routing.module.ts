@@ -5,6 +5,8 @@ import { HomeComponent } from './home/home.component';
 import { ListaClientesComponent } from './pages/cliente/lista-clientes/lista-clientes.component';
 import { ClienteDetalhadoComponent } from './pages/cliente/cliente-detalhado/cliente-detalhado.component';
 import { LoginComponent } from './auth/login/login.component';
+import { authGuard } from './core/guards/auth.guard';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -20,22 +22,31 @@ const routes: Routes = [
 
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [authGuard]
   },
 
   {
     path: 'cadastro-cliente',
-    component: CadastroClienteComponent
+    component: CadastroClienteComponent,
+    canActivate: [authGuard]
   },
 
   {
     path: 'lista-clientes',
-    component: ListaClientesComponent
+    component: ListaClientesComponent,
+    canActivate: [authGuard]
   },
 
   {
     path: 'cliente-detalhado/:id',
-    component: ClienteDetalhadoComponent
+    component: ClienteDetalhadoComponent,
+    canActivate: [authGuard]
+  },
+
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 
