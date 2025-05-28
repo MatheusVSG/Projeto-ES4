@@ -17,20 +17,16 @@
             <th scope="col">Município</th>
             <th scope="col">
               <div class="d-flex">
-                <input type="text" (input)="buscarClientesPorTermo($any($event.target).value)"
-                  class="form-control form-control-sm" placeholder="Buscar..." aria-label="Buscar">
-                <!-- Dropdown de filtro -->
-                <div class="dropdown ms-2">
-                  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    Filtrar
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="#">Nome</a></li>
-                    <li><a class="dropdown-item" href="#">CNPJ</a></li>
-                    <li><a class="dropdown-item" href="#">Cidade</a></li>
-                  </ul>
+                <div class="input-group">
+                  <input type="text" (input)="buscarClientesPorTermo($any($event.target).value)"
+                    class="form-control form-control-sm" placeholder="Buscar..." aria-label="Buscar">
+
+                    <button class="btn btn-success d-flex align-items-center">
+                      <span class="fa-solid--search"></span>
+                    </button>
                 </div>
+
+
               </div>
             </th>
           </tr>
@@ -43,11 +39,12 @@
             <td>{{cliente.municipio}}</td>
             <td class="text-end">
               <div class="d-flex flex-column row-gap-2 align-items-end">
-                <a routerLink="/cliente-detalhado/{{cliente.id}}" class="btn btn-outline-primary btn-sm">
+                <a routerLink="/cliente-detalhado/{{cliente.id}}" class="btn btn-outline-success btn-sm">
                   Detalhes
                 </a>
 
-                <button type="button" (click)="excluirCliente(cliente.id, cliente.nomeFantasia)"  class="btn btn-outline-danger btn-sm">
+                <button type="button" (click)="excluirCliente(cliente.id, cliente.nomeFantasia)"
+                  class="btn btn-outline-danger btn-sm">
                   Excluir
                 </button>
               </div>

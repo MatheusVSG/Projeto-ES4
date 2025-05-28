@@ -10,7 +10,7 @@
                 <form #clienteForm="ngForm" (keyup.enter)="validarCliente(clienteForm)"
                     [ngClass]="{'was-validated': formularioRecebido}">
                     <div class="row align-items-center mb-4">
-                        <h2 class="fs-24">Dados Comerciais</h2>
+                        <h2 class="fs-24 text-success">Informações Comerciais</h2>
 
                         <div class="col-9 col-lg-5 mb-4">
                             <label for="cnpj" class="form-label">CNPJ</label>
@@ -71,7 +71,7 @@
                     </div>
 
                     <div class="row mb-40">
-                        <h2>Contato</h2>
+                        <h2 class="fs-24 text-success">Contato</h2>
                         <div class="col-2 mb-40">
                             <label for="ddd" class="form-label">DDD</label>
                             <input [(ngModel)]="cliente.ddd" type="text" (input)="verificarTelefoneExistente()" name="ddd" id="ddd" mask="0*" maxlength="3"
@@ -81,7 +81,7 @@
                         <div class="col-10 mb-40">
                             <label for="telefone" class="form-label">Telefone</label>
                             <input [(ngModel)]="cliente.telefone" type="text" (input)="verificarTelefoneExistente()" name="telefone" id="telefone"
-                                mask="00000-0000" maxlength="15" placeholder="Informe um telefone válido"
+                                mask="00000-0000||0000-0000" maxlength="15" placeholder="Informe um telefone válido"
                                [ngClass]="{'is-invalid border-danger': errosFormuario.includes('telefone')}" class="form-control">
 
                             <div *ngIf="errosFormuario.includes('telefone')" class="mt-1">
@@ -109,11 +109,11 @@
                     </div>
 
                     <div class="row align-items-center">
-                        <h2>Endereço</h2>
+                        <h2 class="fs-24 text-success">Endereço</h2>
 
                         <div class="col-5 mb-40">
                             <label for="cep" class="form-label">CEP</label>
-                            <input [(ngModel)]="cliente.cep" type="text" name="cep" id="cep" mask="00000-000"
+                            <input [(ngModel)]="cliente.cep" (input)="buscarEndereco()" type="text" name="cep" id="cep" mask="00000-000"
                                 maxlength="9" class="form-control">
                         </div>
 

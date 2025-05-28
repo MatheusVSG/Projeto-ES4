@@ -7,7 +7,7 @@
 
     <div class="flex-grow-1 overflow-y-auto d-flex flex-column pt-3 pb-4">
         <div *ngIf="etapa >= 1 && etapa <= 4">
-            <h2 class="text-primary fw-bold mb-2 text-center">
+            <h2 class="text-success fw-bold mb-2 text-center">
                 {{ etapa === 1 ? 'Identificação Geral' : etapa === 2 ? 'Contato' : etapa === 3 ? 'Endereço' :
                 'Confirmação'
                 }}
@@ -110,7 +110,7 @@
                 <div class="col-9 mb-40">
                     <label for="telefone" class="form-label">Telefone</label>
                     <input [(ngModel)]="cliente.telefone" (input)="verificarTelefoneExistente()" type="text"
-                        name="telefone" id="telefone" mask="00000-0000" maxlength="10" placeholder="Informe um telefone válido"
+                        name="telefone" id="telefone" mask="00000-0000||0000-0000" maxlength="10" placeholder="Informe um telefone válido"
                         [ngClass]="{'is-invalid border-danger': errosFormuario.includes('telefone')}"
                         class="form-control">
 
@@ -215,7 +215,7 @@
 
             <div *ngIf="etapa === 4" @fadeSlideIn>
                 <div class="mb-24">
-                    <h3 class="fs-24">Indetificação Geral</h3>
+                    <h3 class="fs-24 text-success">Indetificação Geral</h3>
                     <p class="mb-8"><strong>CNPJ:</strong> {{cliente.cnpj | mask: '00.000.000/0000-00'}}</p>
                     <p class="mb-8"><strong>Pessoa:</strong> {{cliente.pessoa}}</p>
                     <p *ngIf="cliente.dataAbertura" class="mb-8"><strong>Data de Abertura:</strong>
@@ -228,7 +228,7 @@
                 </div>
 
                 <div *ngIf="cliente.ddd || cliente.telefone || cliente.email || cliente.homePage" class="mb-24">
-                    <h3 class="fs-24">Contato</h3>
+                    <h3 class="fs-24 text-success">Contato</h3>
                     <p *ngIf="cliente.ddd" class="mb-8"><strong>DDD:</strong> {{cliente.ddd}}</p>
                     <p *ngIf="cliente.telefone" class="mb-8"><strong>Telefone:</strong>
                         {{cliente.telefone}}</p>
@@ -238,7 +238,7 @@
                 </div>
 
                 <div class="mb-24">
-                    <h3 class="fs-24">Endereço</h3>
+                    <h3 class="fs-24 text-success">Endereço</h3>
                     <p *ngIf="cliente.cep" class="mb-8"><strong>CEP:</strong>
                         {{cliente.cep | mask: '00000-000'}}</p>
                     <p class="mb-8"><strong>Logradouro:</strong> {{cliente.logradouro}}, {{numeroEndereco}}</p>

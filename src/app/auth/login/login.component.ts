@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginDto: LoginDto = new LoginDto();
+  usuarioValido: boolean = false;
+  senhaValida: boolean = false;;
   formularioRecebido: boolean = false;
   carregando: boolean = false;
 
@@ -32,16 +34,15 @@ export class LoginComponent implements OnInit {
 
   validarAuth(authForm: NgForm): void {
     this.formularioRecebido = true;
+    this.usuarioValido = this.loginDto.usuario?.trim().length > 0;
+    this.senhaValida = this.loginDto.senha?.trim().length > 0;
 
     if (!authForm.valid) {
       this.toastService.error('Usuário ou Senha inválidos!');
       return;
     }
-
-    const usuarioValido = this.loginDto.usuario?.trim().length > 0;
-    const senhaValida = this.loginDto.senha?.trim().length > 0;
-
-    if (usuarioValido && senhaValida) {
+    
+    if (this.usuarioValido && this.senhaValida) {
       this.formularioRecebido = false;
       this.autenticar();
     } else {

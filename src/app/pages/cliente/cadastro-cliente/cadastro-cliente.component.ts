@@ -145,7 +145,8 @@ export class CadastroClienteComponent {
     const ddd = this.cliente.ddd;
     const telefone = this.cliente.telefone;
 
-    if (ddd.length < 2 || telefone.length < 9) {
+    if (ddd.length < 2 || telefone.length < 8) {
+      this.errosFormuario = this.errosFormuario.filter(erro => erro !== 'telefone');
       return;
     }
 
@@ -172,6 +173,11 @@ export class CadastroClienteComponent {
 
   verificarEmailExistente(): void {
     const email = this.cliente.email;
+
+    if (email.trim().length === 0) {
+      this.errosFormuario = this.errosFormuario.filter(erro => erro !== 'e-mail');
+      return;
+    }
 
     this.clienteService.verificarEmailExistente(email).subscribe({
       next: (res) => {
