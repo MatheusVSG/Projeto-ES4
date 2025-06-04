@@ -25,6 +25,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
   ]
 })
 export class CadastroClienteComponent {
+  //
   cliente: Cliente = new Cliente();
 
   numeroEndereco: string = '';
